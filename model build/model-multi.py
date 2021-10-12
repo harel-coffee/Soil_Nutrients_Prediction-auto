@@ -2,7 +2,7 @@
 """
 Created on Mon Oct 11 15:32:28 2021
 
-@author: Hp
+@author: Akib Zaman
 
 """
 from matplotlib import pyplot as plt
@@ -55,14 +55,14 @@ from matplotlib import pyplot
 from imblearn.over_sampling import SMOTE
 
 # from boruta import BorutaPy
-all_features=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilTeam','LandClass',
+all_features=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilType','LandClass',
               'Phosphorus','Potassium','Boron','Calcium','Magnesium','Manganese']
 dataset = pd.read_csv("data/clean_data_labeled.csv", header=None, names=all_features)
 dataset = dataset.drop(labels=0, axis=0)
 dataset=dataset.reset_index()
 dataset=dataset.drop(['index'], axis=1)
-train_feature=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilTeam','LandClass']
-train_string_feature=['Area','SoilTeam','LandClass']
+train_feature=['B2Reft2','B3Reft3','B4Reft4','B5Reft5','B6Reft6','B7Reft7','Area','SoilType','LandClass']
+train_string_feature=['Area','SoilType','LandClass']
 test_feature=['Phosphorus','Potassium','Boron',
                        'Calcium','Magnesium','Manganese']
 
@@ -300,7 +300,7 @@ model3= pickle.load(open('trained_model\model_rf_B.pkl','rb'))
 model4= pickle.load(open('trained_model\model_rf_Ca.pkl','rb'))
 model5= pickle.load(open('trained_model\model_rf_Mg.pkl','rb'))
 model6= pickle.load(open('trained_model\model_rf_Mn.pkl','rb'))
-test_case=[[0.01,0.01,0.01,0.01,0.01,0.01,0,1,1]]
+test_case=[[0.14,0.14,0.14,0.14,0.14,0.14,0,2,3]]
 test_case=pd.DataFrame(test_case, columns = train_feature )
 Ph_pred = model1.predict(test_case)
 K_pred = model2.predict(test_case)
